@@ -36,7 +36,7 @@ module.exports = defineConfig({
     trace: 'on',
     screenshot: 'on',
     video: 'on',
-    headless: false,
+    headless: true,
   },
 
   /* Configure projects for major browsers */
@@ -44,7 +44,7 @@ module.exports = defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'],
-        headless : false,
+        headless : true,
        },
     },
 
