@@ -31,7 +31,7 @@ test('@regression test', async ({ page }) => {
 
 
 
-test.only('@smoke @regression test1', async ({ page }) => {
+test('@smoke @regression test1', async ({ page }) => {
   await page.goto('https://practicetestautomation.com/practice-test-login/');
   await expect(page.getByLabel('Username')).toBeVisible()
   await page.getByLabel('Username').click();
