@@ -33,12 +33,9 @@ test('@regression test', async ({ page }) => {
 
 test.only('@smoke @regression test1', async ({ page }) => {
   await page.goto('https://practicetestautomation.com/practice-test-login/');
+  await expect(page.getByLabel('Username')).toBeVisible()
   await page.getByLabel('Username').click();
   await page.waitForTimeout(5000)
-
-
-
-
   const page1 = await page.context().newPage();
   await page1.goto('https://www.google.com/search?q=gmail&oq=gmail&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCDEzNzlqMGoxqAIAsAIA&sourceid=chrome&ie=UTF-8');
   await page1.getByRole('link', { name: 'Gmail - Google Google Mail' }).click();

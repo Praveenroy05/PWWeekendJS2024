@@ -33,6 +33,12 @@
 // 7. We have to create a Pull Request(PR)
 // 8. Merge the PR to the main branch(master/release)
 
+// git status - the changes have been made inside the local system
+// git branch - Check the branch that you are currently working on
+// git branch -a - Check all the branches that are available in the local system
+
+
+
 
 
 
