@@ -1,0 +1,30 @@
+{
+  "name": "pwseptweekend2024",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "fullTest": "npx playwright test",
+    "smoke": "npx playwright test --grep @smoke",
+    "regression": "npx playwright test --grep @regression",
+    "api": "npx playwright test --grep @api",
+    "smokeOrRegression": "npx playwright test --grep @smoke|@regression",
+    "smokeAndRegression": "npx playwright test --grep (?=.*@smoke)(?=.*@regression)"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@playwright/test": "^1.49.1",
+    "@types/node": "^22.7.7",
+    "allure-commandline": "^2.32.0",
+    "allure-playwright": "^3.0.8",
+    "eslint": "^9.17.0",
+    "globals": "^15.14.0"
+  },
+  "dependencies": {
+    "playwright": "^1.49.1",
+    "pwseptweekend2024": "file:"
+  }
+}

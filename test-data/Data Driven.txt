@@ -1,0 +1,62 @@
+Data Driven
+-----------------------
+
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+import org.apache.poi.ss.usermodel.*;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+public class YourTestClass {
+
+    @Test(dataProvider = "getData")
+    public void yourTestMethod(String param1, String param2) {
+        // Your test logic here using the parameters
+        System.out.println("Parameter 1: " + param1);
+        System.out.println("Parameter 2: " + param2);
+    }
+
+    @DataProvider
+    public Object[][] getData() throws IOException {
+
+        String excelPath = "path/to/your/excel/file.xlsx";
+
+        FileInputStream file = new FileInputStream(excelPath);
+
+        Workbook workbook = WorkbookFactory.create(file);
+
+        Sheet sheet = workbook.getSheet("Sheet1"); // Change to your sheet name
+
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        int colCount = sheet.getRow(0).getPhysicalNumberOfCells();
+
+        Object[][] data = new Object[rowCount - 1][colCount];
+
+        for (int i = 1; i < rowCount; i++) {
+            for (int j = 0; j < colCount; j++) {
+                Cell cell = sheet.getRow(i).getCell(j, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK);
+                data[i - 1][j] = cell.toString();
+            }
+        }
+
+        workbook.close();
+        return data;
+    }
+}
+
+
+
+	@DataProvider
+	public Object[][] getSearchExcelTestData() {
+		return ExcelUtil.getTestData(AppConstants.PRODUCT_DATA_SHEET_NAME); // Value in excel - value1, value2, value3
+	}
+	
+	
+
+	@Test(dataProvider = "getSearchExcelTestData")
+	public void productImagesTest(String searchKey, String productName, String imageCount) {
+		searchResultsPage = accPage.doSearch(searchKey);
+		productInfoPage = searchResultsPage.selectProduct(productName);
+		Assert.assertEquals(String.valueOf(productInfoPage.getProductImagesCount()), imageCount);
+	}
